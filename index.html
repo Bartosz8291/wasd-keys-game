@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Game with WASD, Space, and Arrow Keys</title>
+<meta name="description" content="A simple game controlled with WASD and arrow keys.">
+<link rel="apple-touch-icon" href="https://w7.pngwing.com/pngs/255/697/png-transparent-black-xbox-360-controller-xbox-one-controller-playstation-4-controller-electronics-playstation-4-xbox-thumbnail.png">
+<meta name="apple-mobile-web-app-title" content="A WASD Game">
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        background-color: #333;
+    }
+    #player {
+        position: absolute;
+        width: 50px;
+        height: 50px;
+        background-color: blue;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+</style>
+</head>
+<body>
+<div id="player"></div>
+<script>
+    const player = document.getElementById('player');
+    let posX = 0;
+    let posY = 0;
+    const speed = 5;
+
+    function movePlayer(e) {
+        switch (e.key) {
+            case 'ArrowUp':
+            case 'w':
+            case 'W':
+                posY -= speed;
+                break;
+            case 'ArrowDown':
+            case 's':
+            case 'S':
+                posY += speed;
+                break;
+            case 'ArrowLeft':
+            case 'a':
+            case 'A':
+                posX -= speed;
+                break;
+            case 'ArrowRight':
+            case 'd':
+            case 'D':
+                posX += speed;
+                break;
+            case ' ':
+                // Code for space
+                break;
+        }
+        posX = Math.max(0, Math.min(window.innerWidth - 50, posX));
+        posY = Math.max(0, Math.min(window.innerHeight - 50, posY));
+        player.style.top = posY + 'px';
+        player.style.left = posX + 'px';
+    }
+
+    document.addEventListener('keydown', movePlayer);
+</script>
+</body>
+</html>
